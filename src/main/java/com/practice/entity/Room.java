@@ -3,12 +3,13 @@ package com.practice.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.persistence.Column;
 import java.util.UUID;
 
 @Setter
@@ -16,7 +17,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(name = "ROOM",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"roomNo", "hotel"})
+        uniqueConstraints = @UniqueConstraint(columnNames =
+                {"roomNo", "hotel_id"})
 )
 public class Room {
     public enum STATUS {
@@ -26,7 +28,8 @@ public class Room {
     private String id;
     @Column
     private int roomNo;
-    @Column(name = "hotel")
+    @ManyToOne
+    @JoinColumn(name = "hotel_id")
     private Hotel hotel;
     @Column(name = "type")
     private Hotel.ROOMTYPE type;

@@ -1,15 +1,17 @@
 package com.practice.entity;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.AccessLevel;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
-import javax.persistence.JoinColumn;
-import javax.persistence.ElementCollection;
+
 import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,7 @@ public class Booking {
         CONFIRMED, CANCELED
     }
 
+    @Id
     @Setter(AccessLevel.NONE)
     @Column(name = "id")
     private String id;
@@ -41,7 +44,7 @@ public class Booking {
 
     @Setter(AccessLevel.NONE)
     @ElementCollection
-    @CollectionTable(name = "Room_details",
+    @CollectionTable(name = "Booking_Room_details",
             joinColumns = @JoinColumn(name = "booking_id"))
     @Column(name = "room_no")
     private List<String> roomDetails;

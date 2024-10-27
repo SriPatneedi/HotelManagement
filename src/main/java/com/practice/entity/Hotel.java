@@ -35,7 +35,7 @@ public class Hotel {
     private double rating;
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
     private List<Room> rooms;
-    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "hotelDetails", cascade = CascadeType.ALL)
     private List<Booking> bookings;
 
     /**

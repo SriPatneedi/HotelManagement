@@ -3,7 +3,6 @@ package com.practice.entity;
 import lombok.Getter;
 
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.util.UUID;
@@ -11,7 +10,7 @@ import java.util.UUID;
 @Getter
 @MappedSuperclass
 public class User {
-    @Id @GeneratedValue
+    @Id
     @Column(name = "id")
     protected String id;
     @Column(name = "name")

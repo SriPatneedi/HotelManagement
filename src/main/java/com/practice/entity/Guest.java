@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 @Table(name = "GUEST")
 public class Guest extends User {
-    @OneToMany(mappedBy = "guest",
+    @OneToMany(mappedBy = "guestDetails",
             cascade = CascadeType.ALL)
     private List<Booking> bookings;
 
