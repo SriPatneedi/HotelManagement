@@ -1,22 +1,23 @@
 package com.practice.entity;
 
 import com.practice.exception.HotelException;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
 @Entity
+@Component
+@NoArgsConstructor
 public class Hotel {
 
     public enum ROOMTYPE {
@@ -46,6 +47,7 @@ public class Hotel {
      * @throws HotelException if any of the input hotelLocation,
      * name is null.
      */
+    /*@Autowired
     public Hotel(final String hotelName,
                  final String hotelLocation,
                  final double hotelRating) {
@@ -56,7 +58,7 @@ public class Hotel {
         this.name = hotelName;
         this.location = hotelLocation;
         this.rating = hotelRating;
-    }
+    }*/
 
     /**
      * getter for rooms.

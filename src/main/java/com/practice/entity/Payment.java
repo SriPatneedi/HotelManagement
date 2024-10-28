@@ -2,15 +2,16 @@ package com.practice.entity;
 
 import lombok.AccessLevel;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Column;
 import java.util.UUID;
 
 @Setter
 @Entity
-@Table(name = "PAYMENT")
+@Component
 public class Payment {
     public enum PAYMENTTYPE {
         PAYPAL, CREDITCARD
@@ -21,13 +22,13 @@ public class Payment {
 
     @Setter(AccessLevel.NONE)
     @Id
-    @Column(name = "id")
+    @Column
     private String id;
-    @Column(name = "amount")
+    @Column
     private double amount;
-    @Column(name = "payment_status")
+    @Column
     private PAYMENTSTATUS paymentStatus;
-    @Column(name = "payment_type")
+    @Column
     private PAYMENTTYPE paymentType;
 
     /**
