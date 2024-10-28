@@ -1,16 +1,16 @@
 package com.practice.entity;
 
-import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
-@NoArgsConstructor
 @Entity
-@Table(name = "GUEST")
+@Component
 public class Guest extends User {
     @OneToMany(mappedBy = "guestDetails",
             cascade = CascadeType.ALL)
@@ -18,17 +18,9 @@ public class Guest extends User {
 
     /**
      * Constructor.
-     * @param name the name of guest
-     * @param email the email of guest
-     * @param contactNumber guest contact number
      */
-    public Guest(final String name,
-            final String email,
-            final String contactNumber) {
-        super();
-        this.name = name;
-        this.email = email;
-        this.phoneNumber = contactNumber;
+    public Guest() {
+        this.id = UUID.randomUUID().toString();
     }
 
     /**

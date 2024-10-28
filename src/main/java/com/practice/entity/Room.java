@@ -1,8 +1,8 @@
 package com.practice.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,14 +12,13 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import java.util.UUID;
 
-@Setter
-@Getter
-@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "ROOM",
         uniqueConstraints = @UniqueConstraint(columnNames =
                 {"roomNo", "hotel_id"})
 )
+@Component
 public class Room {
     public enum STATUS {
         AVAILABLE, RESERVED, OCCUPIED
@@ -31,28 +30,17 @@ public class Room {
     @ManyToOne
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
-    @Column(name = "type")
+    @Column
     private Hotel.ROOMTYPE type;
-    @Column(name = "price")
+    @Column
     private int price;
-    @Column(name = "status")
+    @Column
     private STATUS status;
 
     /**
      * Room constructor.
-     * @param hotelDetails hotel details
-     * @param roomModel type of the room
-     * @param roomNumber room number
-     * @param cost price of the room
      */
-    public Room(final Hotel hotelDetails,
-                final Hotel.ROOMTYPE roomModel,
-                final int roomNumber,
-                final int cost) {
+    public Room() {
         this.id = UUID.randomUUID().toString();
-        this.hotel = hotelDetails;
-        this.type = roomModel;
-        this.roomNo = roomNumber;
-        this.price = cost;
     }
 }

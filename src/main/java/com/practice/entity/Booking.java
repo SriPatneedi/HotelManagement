@@ -1,8 +1,9 @@
 package com.practice.entity;
 
 import lombok.AccessLevel;
-import lombok.Getter;
+import lombok.Data;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -11,16 +12,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Getter
-@Setter
+@Data
 @Entity
-@Table(name = "BOOKING")
+@Component
 public class Booking {
     /**
      * Represents the status of the booking.
@@ -31,7 +30,7 @@ public class Booking {
 
     @Id
     @Setter(AccessLevel.NONE)
-    @Column(name = "id")
+    @Column
     private String id;
 
     @ManyToOne
@@ -46,13 +45,13 @@ public class Booking {
     @ElementCollection
     @CollectionTable(name = "Booking_Room_details",
             joinColumns = @JoinColumn(name = "booking_id"))
-    @Column(name = "room_no")
+    @Column
     private List<String> roomDetails;
 
-    @Column(name = "check_in_date")
+    @Column
     private LocalDate checkInDate;
 
-    @Column(name = "check_out_date")
+    @Column
     private LocalDate checkOutDate;
 
     @Column

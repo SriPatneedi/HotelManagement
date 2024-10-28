@@ -1,15 +1,17 @@
 package com.practice.entity;
 
 import lombok.Getter;
+import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import java.util.UUID;
-
+@Setter
 @Getter
 @MappedSuperclass
-public class User {
+@Component
+public abstract class User {
     @Id
     @Column(name = "id")
     protected String id;
@@ -19,8 +21,4 @@ public class User {
     protected String email;
     @Column(name = "phone_number")
     protected String phoneNumber;
-
-    protected User() {
-        this.id = UUID.randomUUID().toString();
-    }
 }
