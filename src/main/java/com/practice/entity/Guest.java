@@ -12,7 +12,7 @@ import java.util.UUID;
 @Entity
 @Component
 public class Guest extends User {
-    @OneToMany(mappedBy = "guestDetails",
+    @OneToMany(mappedBy = "guestId",
             cascade = CascadeType.ALL)
     private List<Booking> bookings;
 

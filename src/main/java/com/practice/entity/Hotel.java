@@ -1,5 +1,6 @@
 package com.practice.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.practice.exception.HotelException;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,8 +36,9 @@ public class Hotel {
     @Column(name = "rating")
     private double rating;
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Room> rooms;
-    @OneToMany(mappedBy = "hotelDetails", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "hotelId", cascade = CascadeType.ALL)
     private List<Booking> bookings;
 
     /**

@@ -48,7 +48,7 @@ public class HotelBookingSystem {
      * @return created booking
      * @throws IllegalArgumentException when hotel is null
      *//*
-    public Booking bookRoom(final Hotel hotel,
+    public Booking bookRooms(final Hotel hotel,
                             final Guest guest,
                             final Map<Hotel.ROOMTYPE, Integer> noOfRooms,
                             final LocalDate date,
@@ -108,7 +108,7 @@ public class HotelBookingSystem {
             Integer roomCount = entry.getValue();
             List<Room> rooms = null;
             try {
-                 rooms = hotel.getRooms(roomType);
+                 rooms = hotel.getAvailableRooms(roomType);
             } catch (Exception exception) {
                 System.out.println("unable to get the available rooms"
                         + exception.getMessage());
@@ -148,7 +148,7 @@ public class HotelBookingSystem {
         booking.setCheckOutDate(date.plusDays(noOfDays));
         booking.setGuestDetails(guest);
         booking.setHotelDetails(hotel);
-        booking.getRoomDetails().addAll(roomNos);
+        booking.getRoomIds().addAll(roomNos);
         return booking;
     }
 
