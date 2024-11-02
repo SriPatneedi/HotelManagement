@@ -13,12 +13,12 @@ import javax.persistence.MappedSuperclass;
 @Component
 public abstract class User {
     @Id
-    @Column(name = "id")
+    @Column
     protected String id;
-    @Column(name = "name")
+    @Column
     protected String name;
-    @Column(name = "email")
+    @Column(unique = true)
     protected String email;
-    @Column(name = "phone_number")
+    @Column
     protected String phoneNumber;
 }

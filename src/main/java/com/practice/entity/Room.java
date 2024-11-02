@@ -1,5 +1,6 @@
 package com.practice.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
@@ -21,14 +22,15 @@ import java.util.UUID;
 @Component
 public class Room {
     public enum STATUS {
-        AVAILABLE, RESERVED, OCCUPIED
+        AVAILABLE, RESERVED, CONFIRMED
     }
     @Id
     private String id;
     @Column
     private int roomNo;
     @ManyToOne
-    @JoinColumn(name = "hotel_id")
+    @JoinColumn(name = "hotel_id", nullable = false)
+    @JsonBackReference
     private Hotel hotel;
     @Column
     private Hotel.ROOMTYPE type;

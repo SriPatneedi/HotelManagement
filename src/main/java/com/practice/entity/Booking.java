@@ -11,7 +11,6 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +23,8 @@ public class Booking {
     /**
      * Represents the status of the booking.
      */
-    private enum BOOKINGSTATUS {
-        CONFIRMED, CANCELED
+    public enum BOOKINGSTATUS {
+        CONFIRMED, ONHOLD, CANCELED
     }
 
     @Id
@@ -33,20 +32,23 @@ public class Booking {
     @Column
     private String id;
 
-    @ManyToOne
-    @JoinColumn(name = "guest_id")
-    private Guest guestDetails;
+    //@ManyToOne
+    //@JoinColumn(name = "guest_id")
+    private String guestId;
 
-    @ManyToOne
-    @JoinColumn(name = "hotel_id")
-    private Hotel hotelDetails;
+    //@ManyToOne
+    //@JoinColumn(name = "hotel_id")
+    private int hotelId;
 
     @Setter(AccessLevel.NONE)
     @ElementCollection
     @CollectionTable(name = "Booking_Room_details",
             joinColumns = @JoinColumn(name = "booking_id"))
     @Column
-    private List<String> roomDetails;
+    private List<String> roomIds;
+
+    @Column
+    private double amount;
 
     @Column
     private LocalDate checkInDate;
@@ -55,7 +57,7 @@ public class Booking {
     private LocalDate checkOutDate;
 
     @Column
-    private BOOKINGSTATUS status;
+    public BOOKINGSTATUS status;
 
     /**
      * once booking object is created generating a random Id for the
@@ -65,14 +67,25 @@ public class Booking {
         this.id = UUID.randomUUID().toString();
     }
 
+    public Booking(int hotelId, String guestId, double amount, LocalDate checkInDate, LocalDate checkOutDate, List<String> roomDetails, BOOKINGSTATUS status){
+        this.id = UUID.randomUUID().toString();
+        this.hotelId = hotelId;
+        this.guestId = guestId;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+        this.roomIds = roomDetails;
+        this.amount = amount;
+        this.status = status;
+    }
+
     /**
      * Getter for room details.
      * @return list of rooms
      */
-    public List<String> getRoomDetails() {
-        if (this.roomDetails == null) {
-            this.roomDetails = new ArrayList<>();
+    public List<String> getRoomIds() {
+        if (this.roomIds == null) {
+            this.roomIds = new ArrayList<>();
         }
-        return roomDetails;
+        return roomIds;
     }
 }
